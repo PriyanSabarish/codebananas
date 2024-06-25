@@ -1,0 +1,51 @@
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.thecenterbox{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+} 
+.toptext{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 9.5rem;
+
+}
+#bananas{
+    color: #DFC53F;
+}
+.yellowbutton{
+    width: 100%;
+    margin-top: 3rem;
+}
+.buttonfont{
+    font-weight: 700;
+
+}
+.providers{
+    display: flex;
+    padding: 20px 0 10px 0 ;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 3rem;
+}
+.signtext{
+    font-size: 3rem;
+}
+.subtext{
+    color: #B3B3B3;
+    font-style: italic;
+    
+}
+.codebananas{
+    position: relative;
+    bottom: 1rem;
+    font-size: 3.9rem;
+    font-stretch:expanded;
+}

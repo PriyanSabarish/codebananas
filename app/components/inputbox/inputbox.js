@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect } from 'react';
 import './inputbox.css'
-function CustomInput({InputType,InputText } ) {
+function CustomInput({InputType,InputText,OnChange} ) {
 
     useEffect(() => {
         // This effect will run only on the client-side
@@ -15,7 +15,7 @@ function CustomInput({InputType,InputText } ) {
         return (
             <div>
                 
-                <input type={InputType} name="text" class="input" placeholder={InputText}>
+                <input type={InputType} name="text" class="input" placeholder={InputText} onChange={OnChange}>
                 </input>
 
             </div>

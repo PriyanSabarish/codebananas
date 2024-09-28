@@ -1,8 +1,12 @@
 "use client"
 import CustomButton from "./components/button";
-import "./home.css"
+import "./main.css"
 import Link from 'next/link';
+import { useSession, signIn, signOut } from 'next-auth/react';
+import { redirect } from "next/dist/server/api-utils";
+
 export default function Home() {
+
 
   return (
       <div className="thecenterbox">
@@ -11,18 +15,18 @@ export default function Home() {
         <div className="codebananas">Code<span id="bananas">bananas</span></div></div>
         <div className="subtext">Login or register to start building your projects today.</div>
         <div  className ="yellowbutton">
-        <Link href="/pages/signmail">
+        <Link href="/auth/signin"> 
         <CustomButton
         backgroundColor="#CFB111"
         textColor="#323232"
         borderRadius="6px"
         height="60px"
         fontSize= '1.2rem'
-        onClick={()=>{}}
+        onclick={() =>{}}
       >
         <div className="buttonfont">Sign in with email</div>
       </CustomButton>
-      </Link>
+      </Link> 
       </div>
 
       <div className="providers">
@@ -33,7 +37,7 @@ export default function Home() {
         height="52px"
         width="48%"
         fontSize= '0.8rem'
-        onClick={() => alert('Button clicked')}
+        onclick={() => alert('Button clicked')}
       >
         Sign in with GitHub
       </CustomButton>
@@ -44,9 +48,9 @@ export default function Home() {
         height="52px"
         width="45%"
         fontSize= '0.8rem'
-        onClick={() => alert('Button clicked')}
+        onclick={async () => await signIn("google",{callbackUrl: '/home'})}
       >
-        Sign in with Gmail
+        Sign in with Google
       </CustomButton>
       </div>
       </div>

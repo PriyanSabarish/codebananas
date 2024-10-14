@@ -3,6 +3,7 @@ body{
     display: flex;
     justify-content: center;
     width: 100%;
+    flex-direction: column;
 }
 
 .nav{
@@ -21,4 +22,9 @@ body{
     bottom: 1rem;
     font-size: 2.5rem;
     font-stretch:expanded;
+}
+.editor{
+    margin-top: 5%;
+    height: 80vh;
+    width: 100%;
 }

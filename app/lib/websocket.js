@@ -6,12 +6,12 @@ let activeUsers = [];
 
 // Handle WebSocket connections
 wss.on('connection', (ws) => {
-  console.log('user connected');
+ 
 
   // When a user logs in, they send their userId (email)
   ws.on('message', (message) => {
     const data = JSON.parse(message);
-
+    console.log(data.userId,'user connected');
     if (data.action === 'login') {
       // Set userId for this connection
       ws.userId = data.userId;
@@ -31,7 +31,7 @@ wss.on('connection', (ws) => {
     // Handle the 'codeUpdate' action
     if (data.action === 'codeUpdate') {
       // Broadcast the code change to all other users (except the sender)
-      console.log(data.text)
+      console.log(`Code update from ${ws.userId}`);
       broadcast({
         action: 'codeUpdate',
         userId: ws.userId,
@@ -43,10 +43,11 @@ wss.on('connection', (ws) => {
 
   // When a user disconnects
   ws.on('close', () => {
-    console.log('A user disconnected');
+    console.log(ws.userId,'user disconnected');
     
     // Remove the user from active users list
     activeUsers = activeUsers.filter((user) => user !== ws.userId);
+    
     // Broadcast updated users list after disconnection
     broadcast({
       action: 'updateUsers',
@@ -55,9 +56,9 @@ wss.on('connection', (ws) => {
   });
 
   // Function to broadcast the active users list and code updates
-  function broadcast(data, senderWs = null) {
+  function broadcast(data) {
     wss.clients.forEach((client) => {
-      if (client.readyState === WebSocket.OPEN && client !== senderWs) {
+      if (client.readyState === WebSocket.OPEN) {
         // Send to all clients except the sender
         client.send(JSON.stringify(data));
       }
